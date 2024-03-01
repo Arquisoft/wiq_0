@@ -83,6 +83,19 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
+After installing Docker, we need to set up a global environment variable to configure external container connectivity. This can be done by editing the /etc/environment file:
+
+```bash
+sudo nano /etc/environment
+```
+
+and adding the following line:
+
+```bash
+DOCKER_HOST_IP=[IP address of the remote machine]
+```
+
+
 ### Continuous delivery (GitHub Actions)
 
 Once we have our machine ready, we could deploy by hand the application, taking our docker-compose file and executing it in the remote machine. 

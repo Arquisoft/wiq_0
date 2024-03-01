@@ -13,5 +13,8 @@ RUN npm install
 # Copy the app source code to the working directory
 COPY . .
 
+#Remove env file (not necesary for docker)
+RUN rm -f .env
+
 # Define the command to run your app
 CMD ["node", "gateway-service.js"]
