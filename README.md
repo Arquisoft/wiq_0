@@ -108,6 +108,7 @@ deploy:
         command: |
           wget https://raw.githubusercontent.com/arquisoft/wiq_0/master/docker-compose.yml -O docker-compose.yml
           wget https://raw.githubusercontent.com/arquisoft/wiq_0/master/.env -O .env
+          export $DOCKER_HOST_IP=${{ secrets.DEPLOY_HOST }}
           docker compose --profile prod down
           docker compose --profile prod up -d
 ```
