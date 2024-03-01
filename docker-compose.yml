@@ -67,7 +67,7 @@ services:
     ports:
       - "3000:3000" 
     environment:
-      HOST_IP: ${WIQ_EXTERNAL_DNS_NAME_OR_IP:-localhost}
+      REACT_APP_API_ENDPOINT: http://${WIQ_EXTERNAL_DNS_NAME_OR_IP:-localhost}:8000
 
   prometheus:
     image: prom/prometheus
