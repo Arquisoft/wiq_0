@@ -55,7 +55,6 @@ services:
     environment:
       AUTH_SERVICE_URL: http://${WIQ_EXTERNAL_DNS_NAME_OR_IP:-authservice}:8002
       USER_SERVICE_URL: http://${WIQ_EXTERNAL_DNS_NAME_OR_IP:-userservice}:8001
-      HOST_IP: ${WIQ_EXTERNAL_DNS_NAME_OR_IP:-localhost}
 
   webapp:
     container_name: webapp-${teamname:-defaultASW}
