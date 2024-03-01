@@ -42,7 +42,7 @@ app.post('/adduser', async (req, res) => {
 });
 
 // Start the gateway service
-const server = app.listen(port,"$HOST_IP", () => {
+const server = app.listen(port, () => {
   console.log(`Gateway Service listening at http://localhost:${port}`);
 });
 
