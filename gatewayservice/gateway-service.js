@@ -6,8 +6,8 @@ const promBundle = require('express-prom-bundle');
 const app = express();
 const port = 8000;
 
-const authServiceUrl = process.env.AUTH_SERVICE_URL || 'http://localhost:8002';
-const userServiceUrl = process.env.USER_SERVICE_URL || 'http://localhost:8001';
+const authServiceUrl = process.env.AUTH_SERVICE_URL ;
+const userServiceUrl = process.env.USER_SERVICE_URL ;
 
 app.use(cors());
 app.use(express.json());
