@@ -11,7 +11,7 @@ const Login = () => {
   const [createdAt, setCreatedAt] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  const apiEndpoint = process.env.REACT_APP_API_ENDPOINT||'http://localhost:8000';
+  const apiEndpoint = process.env.REACT_APP_API_ENDPOINT;
 
   const loginUser = async () => {
     try {
