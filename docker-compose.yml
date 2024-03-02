@@ -23,7 +23,7 @@ services:
     networks:
       - mynetwork
     environment:
-      MONGODB_URI: mongodb://${WIQ_EXTERNAL_DNS_NAME_OR_IP:-mongodb}:27017/userdb
+      MONGODB_URI: mongodb://mongodb:27017/userdb
 
   userservice:
     container_name: userservice-${teamname:-defaultASW}
@@ -37,7 +37,7 @@ services:
     networks:
       - mynetwork
     environment:
-      MONGODB_URI: mongodb://${WIQ_EXTERNAL_DNS_NAME_OR_IP:-mongodb}:27017/userdb
+      MONGODB_URI: mongodb://mongodb:27017/userdb
 
   gatewayservice:
     container_name: gatewayservice-${teamname:-defaultASW}
