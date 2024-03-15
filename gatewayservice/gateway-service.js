@@ -3,6 +3,11 @@ const axios = require('axios');
 const cors = require('cors');
 const promBundle = require('express-prom-bundle');
 
+const swaggerUi = require('swagger-ui-express');
+const fs = require("fs")
+const YAML = require('yaml')
+
+
 const app = express();
 const port = 8000;
 
@@ -41,9 +46,20 @@ app.post('/adduser', async (req, res) => {
   }
 });
 
+
+
+//Adding the swagger and openapi doc following: https://medium.com/@tericcabrel/document-a-node-js-rest-api-with-swagger-and-open-api-d86145f9754d
+//More int f: https://dev.to/kabartolo/how-to-document-an-express-api-with-swagger-ui-and-jsdoc-50do
+
+const file  = fs.readFileSync('./openapi.yaml', 'utf8')
+const swaggerDocument = YAML.parse(file)
+
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 // Start the gateway service
 const server = app.listen(port, () => {
   console.log(`Gateway Service listening at http://localhost:${port}`);
 });
+
 
 module.exports = server
