@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Gateway API
-  description: Gateway OpenApi specification.
-  version: 0.1.9
+  title: Gatewayservice API
+  description: Gateway OpenAPI specification.
+  version: 0.2.0
 servers:
   - url: http://localhost:8000
     description: Development server
@@ -11,7 +11,8 @@ servers:
 paths:
   /adduser:
     post:
-      summary: Adds a new user to the database.
+      summary: Add a new user to the database.
+      operationId: addUser
       requestBody:
         required: true
         content:
@@ -21,40 +22,42 @@ paths:
               properties:
                 username:
                   type: string
-                  description: The user ID.
+                  description: User ID.
                 password:
                   type: string
-                  description: The user password.
+                  description: User password.
       responses:
-        '200':    # status code
-          description: OK
-        '400':    # status code
-          description: The user cannot be added
+        '200':
+          description: User added successfully.
+        '400':
+          description: Failed to add user.
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   error:
                     type: string
-                    description: Information about the error.
+                    description: Error information.
   /health:
     get:
-      summary: the Healthcheck of the service.
+      summary: Check the health status of the service.
+      operationId: checkHealth
       responses:
-        '200':    # status code
-          description: The status Code
+        '200':
+          description: Service is healthy.
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   status:
                     type: string
-                    description: OK
+                    description: Health status.
   /login:
     post:
-      summary: Logs the user into the system
+      summary: Log in to the system.
+      operationId: loginUser
       requestBody:
         required: true
         content:
@@ -64,13 +67,13 @@ paths:
               properties:
                 username:
                   type: string
-                  description: The user ID.
+                  description: User ID.
                 password:
                   type: string
-                  description: The user password.
+                  description: User password.
       responses:
-        '200':    # status code
-          description: A JSON array of user names
+        '200':
+          description: Login successful. Returns user token, username, and creation date.
           content:
             application/json:
               schema:
@@ -78,30 +81,30 @@ paths:
                 properties:
                   token:
                     type: string
-                    description: The user token.
+                    description: User token.
                   username:
                     type: string
-                    description: The username.
+                    description: Username.
                   createdAt:
-                    type: string ## We can use patterns to validate it. See more: https://swagger.io/docs/specification/data-models/data-types/
-                    description: The username.
-        '401':    # status code
-          description: The user cannot be added
+                    type: string
+                    description: Creation date.
+        '401':
+          description: Invalid credentials.
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   error:
                     type: string
                     description: Invalid Credentials.
-        '500':    # status code
-          description: The user cannot be added
+        '500':
+          description: Internal server error.
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   error:
                     type: string
-                    description: Information about the error.
+                    description: Error information.
