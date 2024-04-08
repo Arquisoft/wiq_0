@@ -2,12 +2,10 @@ FROM node:20
 
 COPY . /app
 WORKDIR /app
-
+#Remove env file (not necesary for docker)
+RUN rm -f .env
 #Install the dependencies
 RUN npm install
-
-ARG API_URI="http://localhost:8000"
-ENV REACT_APP_API_ENDPOINT=$API_URI
 
 #Create an optimized version of the webapp
 RUN npm run build
